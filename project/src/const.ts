@@ -1,6 +1,6 @@
 export enum AppRoute {
   Login = '/login',
-  Property = '/property/:id',
+  Property = '/property',
   Empty = '/empty',
   Main = '/',
 }

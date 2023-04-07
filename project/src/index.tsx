@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import {mockOffers} from './mock/offers';
 
 const Setting = {
   ErrorsCount: 312,
@@ -14,6 +15,7 @@ root.render(
   <React.StrictMode>
     <App
       placesCount = {Setting.ErrorsCount}
+      offers = {mockOffers}
     />
   </React.StrictMode>,
 );
