@@ -1,6 +1,6 @@
 import {Review} from '../types/review';
 
-export type OfferImages = {
+export type OfferImage = {
   src: string;
   alt: string;
 }
@@ -15,7 +15,7 @@ export type HostInfo = {
 
 export type Offer = {
   offerId: number;
-  offerImages: OfferImages[];
+  offerImages: OfferImage[];
   title: string;
   description: string;
   isPremium: boolean;
@@ -28,5 +28,3 @@ export type Offer = {
   hostInfo: HostInfo;
   reviews: Review[];
 };
-
-export type Offers = Offer[];

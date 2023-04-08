@@ -14,8 +14,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      placesCount = {Setting.ErrorsCount}
-      offers = {mockOffers}
+      placesCount={Setting.ErrorsCount}
+      offers={mockOffers}
     />
   </React.StrictMode>,
 );

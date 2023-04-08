@@ -1,18 +1,17 @@
-import {Offer, Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
-import {randomId} from '../../utils';
+
 
 type PlaceListProps = {
-  offers: Offers;
+  offers: Offer[];
 }
 
-function PlaceList (props: PlaceListProps) {
-  const {offers} = props;
+function PlaceList ({offers}: PlaceListProps) {
 
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((currentOffer: Offer) => (
-        <PlaceCard key={randomId()}
+        <PlaceCard key={currentOffer.offerId}
           offer={currentOffer}
         />
       ))}

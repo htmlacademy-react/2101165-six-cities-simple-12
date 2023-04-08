@@ -5,11 +5,11 @@ import EmptyScreen from '../../pages/empty-screen/empty-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 
 type AppScreenProps = {
   placesCount: number;
-  offers: Offers;
+  offers: Offer[];
 }
 
 function App({placesCount, offers}: AppScreenProps): JSX.Element {

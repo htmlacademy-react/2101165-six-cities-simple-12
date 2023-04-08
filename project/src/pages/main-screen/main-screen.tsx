@@ -1,9 +1,9 @@
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import PlaceList from '../../components/place-list/place-list';
 
 type MainScreenProps = {
   placesCount: number;
-  offers: Offers;
+  offers: Offer[];
 }
 
 function MainScreen ({placesCount, offers}: MainScreenProps): JSX.Element {

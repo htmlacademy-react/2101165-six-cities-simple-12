@@ -1,115 +1,60 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
+import {ARRAY_FOR_ADD_COMMENT_TEMPLATE} from '../../const';
 
 function CommentForm () : JSX.Element {
 
-  const [isDisabled, setDisabled] = useState(true);
   const [rating, setRating] = useState('');
   const [review, setReview] = useState('');
 
-  const submitHandler = (evt : FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (evt : FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setDisabled(true);
     setRating('');
     setReview('');
   };
 
-  const ratingChangeHandler = (evt : ChangeEvent<HTMLInputElement>) => {
+  const handleRatingChange = (evt : ChangeEvent<HTMLInputElement>) => {
     setRating(evt.target.value);
-    if (rating && review) {
-      setDisabled(false);
-    }
   };
 
-  const reviewChangeHandler = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleReviewChange = (evt: ChangeEvent<HTMLTextAreaElement>) => {
     setReview(evt.target.value);
-    if (rating && review) {
-      setDisabled(false);
-    }
   };
 
   return (
     <form className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={submitHandler}
+      onSubmit={handleSubmit}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        <input className="form__rating-input visually-hidden"
-          name="rating"
-          value="5"
-          id="5-stars"
-          type="radio"
-          onChange={ratingChangeHandler}
-          checked={rating === '5'}
-        />
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
 
-        <input className="form__rating-input visually-hidden"
-          name="rating"
-          value="4"
-          id="4-stars"
-          type="radio"
-          onChange={ratingChangeHandler}
-          checked={rating === '4'}
-        />
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
+        {
+          ARRAY_FOR_ADD_COMMENT_TEMPLATE.map((arrayElement) => (
+            <>
+              <input className="form__rating-input visually-hidden"
+                name="rating"
+                value={arrayElement.mark}
+                id={`${arrayElement.mark}-stars`}
+                type="radio"
+                onChange={handleRatingChange}
+                checked={rating === arrayElement.mark}
+              />
+              <label htmlFor={`${arrayElement.mark}-stars`} className="reviews__rating-label form__rating-label" title={arrayElement.textMark}>
+                <svg className="form__star-image" width="37" height="33">
+                  <use xlinkHref="#icon-star"></use>
+                </svg>
+              </label>
+            </>
+          ))
+        }
 
-        <input className="form__rating-input visually-hidden"
-          name="rating"
-          value="3"
-          id="3-stars"
-          type="radio"
-          onChange={ratingChangeHandler}
-          checked={rating === '3'}
-        />
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden"
-          name="rating"
-          value="2"
-          id="2-stars"
-          type="radio"
-          onChange={ratingChangeHandler}
-          checked={rating === '2'}
-        />
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input className="form__rating-input visually-hidden"
-          name="rating"
-          value="1"
-          id="1-star"
-          type="radio"
-          onChange={ratingChangeHandler}
-          checked={rating === '1'}
-        />
-        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
       </div>
       <textarea className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={reviewChangeHandler}
+        onChange={handleReviewChange}
         value={review}
       >
       </textarea>
@@ -119,7 +64,7 @@ function CommentForm () : JSX.Element {
         </p>
         <button className="reviews__submit form__submit button"
           type="submit"
-          disabled={isDisabled}
+          disabled={!(rating && review)}
         >
           Submit
         </button>

@@ -7,17 +7,16 @@ type PlaceCardProps = {
   offer: Offer;
 }
 
-function PlaceCard (props: PlaceCardProps) {
+function PlaceCard ({offer}: PlaceCardProps) {
 
-  const {offer} = props;
   const {offerId, isPremium, title, offerType, offerImages, pricePerNight, rating} = offer;
 
-  const [activeCard, setActiveCard] = useState<number | undefined>(undefined); // eslint-disable-line
+  const [activeCard, setActiveCard] = useState<number | null>(null); // eslint-disable-line
 
   return (
     <article className="cities__card place-card"
-      onMouseOver={() => {setActiveCard(offerId);}}
-      onMouseOut={() => {setActiveCard(undefined);}}
+      onMouseOver={() => setActiveCard(offerId)}
+      onMouseOut={() => setActiveCard(null)}
     >
       {
         isPremium &&
@@ -27,7 +26,7 @@ function PlaceCard (props: PlaceCardProps) {
       }
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`${AppRoute.Property}/${offerId}`}>
-          <img className="place-card__image" src={offerImages[1].src} width="260" height="200" alt={offerImages[1].alt} />
+          <img className="place-card__image" src={offerImages[0].src} width="260" height="200" alt={offerImages[0].alt} />
         </Link>
       </div>
       <div className="place-card__info">
