@@ -1,10 +1,13 @@
-import PlaceCard from '../../components/place-card/place-card';
+import {Offer} from '../../types/offer';
+import PlaceList from '../../components/place-list/place-list';
 
 type MainScreenProps = {
   placesCount: number;
+  offers: Offer[];
 }
 
-function MainScreen ({placesCount}: MainScreenProps): JSX.Element {
+function MainScreen ({placesCount, offers}: MainScreenProps): JSX.Element {
+
   return (
     <body className="page page--gray page--main">
       <div style={{ display: 'none' }}>
@@ -97,13 +100,7 @@ function MainScreen ({placesCount}: MainScreenProps): JSX.Element {
                 </ul>
               </form>
 
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-              </div>
+              <PlaceList offers={offers} />
 
             </section>
             <div className="cities__right-section">
