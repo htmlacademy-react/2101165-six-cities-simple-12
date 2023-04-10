@@ -27,4 +27,17 @@ export type Offer = {
   itemsInside: string[];
   hostInfo: HostInfo;
   reviews: Review[];
+  city: string;
+  coordinates: number[];
+};
+
+export type LocationCity = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+export type City = {
+  name: string;
+  location: LocationCity;
 };

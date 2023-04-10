@@ -6,8 +6,8 @@ import {randomId} from '../../utils';
 
 function PropertyScreen (): JSX.Element {
   const params = useParams();
-  const selectedOffer = Number(params.id);
-  const offer = mockOffers.find((currentOffer) => currentOffer.offerId === selectedOffer) as Offer;
+  const selectedOfferId = Number(params.id);
+  const offer = mockOffers.find((currentOffer) => currentOffer.offerId === selectedOfferId) as Offer;
   const {rating, offerImages, isPremium, title, offerType, bedQuantity, maxPeopleQuantity, pricePerNight, itemsInside, hostInfo} = offer;
 
   return (

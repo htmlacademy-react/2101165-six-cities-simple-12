@@ -5,6 +5,8 @@ export enum AppRoute {
   Main = '/',
 }
 
+export const URL_MARKER_DEFAULT = 'img/pin.svg';
+
 export const ARRAY_FOR_ADD_COMMENT_TEMPLATE = [
   {
     mark: '5',
