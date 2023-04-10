@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {mockOffers} from './mock/offers';
+import {city} from './mock/city';
 
 const Setting = {
   ErrorsCount: 312,
@@ -16,6 +17,7 @@ root.render(
     <App
       placesCount={Setting.ErrorsCount}
       offers={mockOffers}
+      city={city}
     />
   </React.StrictMode>,
 );

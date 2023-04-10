@@ -1,4 +1,4 @@
-import {useState, ChangeEvent, FormEvent} from 'react';
+import {useState, ChangeEvent, FormEvent, Fragment} from 'react';
 import {ARRAY_FOR_ADD_COMMENT_TEMPLATE} from '../../const';
 
 function CommentForm () : JSX.Element {
@@ -31,7 +31,7 @@ function CommentForm () : JSX.Element {
 
         {
           ARRAY_FOR_ADD_COMMENT_TEMPLATE.map((arrayElement) => (
-            <>
+            <Fragment key={arrayElement.mark}>
               <input className="form__rating-input visually-hidden"
                 name="rating"
                 value={arrayElement.mark}
@@ -45,7 +45,7 @@ function CommentForm () : JSX.Element {
                   <use xlinkHref="#icon-star"></use>
                 </svg>
               </label>
-            </>
+            </Fragment>
           ))
         }
 

@@ -58,6 +58,8 @@ export const mockOffers: Offer[] = [
       descriptionTwo: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     },
     reviews: mockReviews,
+    city: 'Amsterdam',
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     offerId: 2,
@@ -115,6 +117,8 @@ export const mockOffers: Offer[] = [
       descriptionTwo: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     },
     reviews: mockReviews,
+    city: 'Amsterdam',
+    coordinates: [52.3609553943508, 4.85309666406198],
   },
   {
     offerId: 3,
@@ -166,6 +170,8 @@ export const mockOffers: Offer[] = [
       descriptionTwo: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     },
     reviews: mockReviews,
+    city: 'Amsterdam',
+    coordinates: [52.3909553943508, 4.929309666406198],
   },
   {
     offerId: 4,
@@ -223,5 +229,7 @@ export const mockOffers: Offer[] = [
       descriptionTwo: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     },
     reviews: mockReviews,
+    city: 'Amsterdam',
+    coordinates: [52.3809553943508, 4.939309666406198],
   },
 ];
