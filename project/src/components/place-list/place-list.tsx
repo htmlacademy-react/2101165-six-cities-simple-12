@@ -1,6 +1,5 @@
 import {Offer} from '../../types/offer';
 import PlaceCard from '../place-card/place-card';
-import {useAppSelector} from '../../hooks';
 
 type PlaceListProps = {
   offers: Offer[];

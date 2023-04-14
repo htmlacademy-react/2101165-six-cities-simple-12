@@ -1,7 +1,6 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {Offer} from '../types/offer';
 import {loadOffers, changeCity, loadOffersByCity} from './action';
-import {mockOffers} from '../mock/offers';
 import {CITIES} from '../const';
 
 type initialStateType = {
@@ -27,7 +26,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffersByCity, (state) => {
       state.offersByCity = state.offers.filter((offer) => offer.city === state.city);
-    })
+    });
 });
 
 export {reducer};
