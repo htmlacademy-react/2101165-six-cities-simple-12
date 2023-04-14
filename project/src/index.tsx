@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {mockOffers} from './mock/offers';
-import {city} from './mock/city';
+import {mockCity} from './mock/city';
+import {Provider} from 'react-redux';
+import { store } from './store';
 
 const Setting = {
   ErrorsCount: 312,
@@ -14,10 +16,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      placesCount={Setting.ErrorsCount}
-      offers={mockOffers}
-      city={city}
-    />
+    <Provider store = {store}>
+      <App
+        placesCount={Setting.ErrorsCount}
+        offers={mockOffers}
+        city={mockCity[0]}
+      />
+    </Provider>
   </React.StrictMode>,
 );

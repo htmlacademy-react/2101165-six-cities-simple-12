@@ -29,3 +29,5 @@ export const ARRAY_FOR_ADD_COMMENT_TEMPLATE = [
     textMark: 'terribly'
   }
 ];
+
+export const CITIES: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
