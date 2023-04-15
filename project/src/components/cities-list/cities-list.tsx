@@ -1,15 +1,13 @@
 import {CITIES} from '../../const';
-import {randomId} from '../../utils';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {NavLink} from 'react-router-dom';
 import {changeCity, loadOffersByCity} from '../../store/action';
 import {MouseEvent} from 'react';
 
-function CitieslList () : JSX.Element {
+function CitieslList (): JSX.Element {
 
   const selectedCity = useAppSelector((state) => state.city);
   const dispatch = useAppDispatch();
-  const setClasses = (city: string) => `locations__item-link tabs__item ${city === selectedCity ? 'tabs__item--active' : ''}`;
 
   const handleCityChange = (evt: MouseEvent) => {
     evt.preventDefault();
@@ -23,12 +21,12 @@ function CitieslList () : JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {CITIES.map((city) => (
-        <li key={randomId()}
+        <li key={city}
           className="locations__item"
-          onClick={handleCityChange}
         >
-          <NavLink className={setClasses(city)}
+          <NavLink className={`locations__item-link tabs__item ${city === selectedCity ? 'tabs__item--active' : ''}`}
             to={'/'}
+            onClick={handleCityChange}
           >
             <span>{city}</span>
           </NavLink>

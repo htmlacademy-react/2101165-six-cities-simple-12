@@ -117,7 +117,7 @@ export const mockOffers: Offer[] = [
       descriptionTwo: 'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
     },
     reviews: mockReviews,
-    city: 'Amsterdam',
+    city: 'Cologne',
     coordinates: [52.3609553943508, 4.85309666406198],
   },
   {

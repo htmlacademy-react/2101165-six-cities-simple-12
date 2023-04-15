@@ -2,6 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {Offer} from '../types/offer';
 import {loadOffers, changeCity, loadOffersByCity} from './action';
 import {CITIES} from '../const';
+import {mockOffers} from '../mock/offers';
 
 type initialStateType = {
   city: string;

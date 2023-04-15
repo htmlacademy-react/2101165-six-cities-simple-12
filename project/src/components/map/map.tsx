@@ -22,6 +22,10 @@ function Map({city, offers}: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      map.setView({
+        lat: city.location.latitude,
+        lng: city.location.longitude
+      });
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.coordinates[0],
