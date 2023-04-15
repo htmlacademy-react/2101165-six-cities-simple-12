@@ -1,4 +1,4 @@
-import {Offer, City} from '../../types/offer';
+import {City} from '../../types/offer';
 import PlaceList from '../../components/place-list/place-list';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
@@ -8,23 +8,16 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {mockOffers} from '../../mock/offers';
 import {mockCities} from '../../mock/city';
 
-type MainScreenProps = {
-  placesCount: number;
-  city: City;
-  offers: Offer[];
-}
-
-function MainScreen ({placesCount, offers, city}: MainScreenProps): JSX.Element {
+function MainScreen (): JSX.Element {
 
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(loadOffers(mockOffers));
-  }, []);
+  }, [dispatch]);
 
-  const offers1 = useAppSelector((state) => state.offersByCity);
-  const placeCount1 = offers1.length;
-  const city1 = useAppSelector((state) => state.city);
-  const cityForMap = mockCities.find((city) => city.name === city1) as City;
+  const offers = useAppSelector((state) => state.offersByCity);
+  const city = useAppSelector((state) => state.city);
+  const cityForMap = mockCities.find((mockCity) => mockCity.name === city) as City;
 
   return (
     <div className="page page--gray page--main">
@@ -72,7 +65,7 @@ function MainScreen ({placesCount, offers, city}: MainScreenProps): JSX.Element 
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{`${placeCount1} places to stay in ${city1}`}</b>
+              <b className="places__found">{`${offers.length} places to stay in ${city}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -89,12 +82,12 @@ function MainScreen ({placesCount, offers, city}: MainScreenProps): JSX.Element 
                 </ul>
               </form>
 
-              <PlaceList offers={offers1} />
+              <PlaceList offers={offers} />
 
             </section>
             <div className="cities__right-section">
 
-              <Map city={cityForMap} offers={offers1} />
+              <Map city={cityForMap} offers={offers} />
 
             </div>
           </div>

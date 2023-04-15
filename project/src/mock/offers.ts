@@ -59,7 +59,7 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Amsterdam',
-    coordinates: [52.3909553943508, 4.85309666406198],
+    coordinates: [52.39012508, 4.85308],
   },
   {
     offerId: 2,
@@ -118,7 +118,7 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Cologne',
-    coordinates: [52.3609553943508, 4.85309666406198],
+    coordinates: [50.9575123864, 6.80251124678],
   },
   {
     offerId: 3,
@@ -171,7 +171,7 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Amsterdam',
-    coordinates: [52.3909553943508, 4.929309666406198],
+    coordinates: [52.3508, 4.9298],
   },
   {
     offerId: 4,
@@ -289,7 +289,7 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Paris',
-    coordinates: [52.3909553943508, 4.85309666406198],
+    coordinates: [48.8582534, 2.2646344],
   },
   {
     offerId: 8,
@@ -348,7 +348,7 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Paris',
-    coordinates: [52.3609553943508, 4.85309666406198],
+    coordinates: [48.858111, 2.26888],
   },
   {
     offerId: 7,
@@ -401,7 +401,7 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Paris',
-    coordinates: [52.3909553943508, 4.929309666406198],
+    coordinates: [52.390908, 4.929398],
   },
   {
     offerId: 11,
@@ -460,6 +460,6 @@ export const mockOffers: Offer[] = [
     },
     reviews: mockReviews,
     city: 'Paris',
-    coordinates: [52.3809553943508, 4.939309666406198],
+    coordinates: [52.3808, 4.9393098],
   },
 ];
