@@ -31,7 +31,7 @@ export type Offer = {
   coordinates: number[];
 };
 
-export type LocationCity = {
+export type CityLocation = {
   latitude: number;
   longitude: number;
   zoom: number;
@@ -39,5 +39,5 @@ export type LocationCity = {
 
 export type City = {
   name: string;
-  location: LocationCity;
+  location: CityLocation;
 };
