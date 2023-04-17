@@ -3,9 +3,9 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import {APIRoute} from '../const';
 import {Offer} from '../types/offer';
-import {loadOffers, setOffersDataLoadingStatus} from './action';
+import { setOffersDataLoadingStatus } from './action';
 
-export const fetchHotelAction = createAsyncThunk<void, undefined, {
+export const fetchHotelAction = createAsyncThunk<Offer[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -15,7 +15,7 @@ export const fetchHotelAction = createAsyncThunk<void, undefined, {
     dispatch(setOffersDataLoadingStatus(true));
     const {data} = await api.get<Offer[]>(APIRoute.Hotels);
     dispatch(setOffersDataLoadingStatus(false));
-    dispatch(loadOffers(data));
+    return data;
   },
 );
 

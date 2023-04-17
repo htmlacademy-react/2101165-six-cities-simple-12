@@ -1,14 +1,15 @@
 import {useParams} from 'react-router-dom';
-import {mockOffers} from '../../mock/offers';
 import {Offer} from '../../types/offer';
 import CommentForm from '../../components/comment-form/comment-form';
 import {randomId} from '../../utils';
+import {useAppSelector} from '../../hooks';
 
 function PropertyScreen (): JSX.Element {
   const params = useParams();
   const selectedOfferId = Number(params.id);
-  const offer = mockOffers.find((currentOffer) => currentOffer.offerId === selectedOfferId) as Offer;
-  const {rating, offerImages, isPremium, title, offerType, bedQuantity, maxPeopleQuantity, pricePerNight, itemsInside, hostInfo} = offer;
+  const offersAll = useAppSelector((state) => state.offers);
+  const offer = offersAll.find((currentOffer) => currentOffer.id === selectedOfferId) as Offer;
+  const {rating, images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, description} = offer;
 
   return (
     <div>
@@ -49,9 +50,9 @@ function PropertyScreen (): JSX.Element {
             <div className="property__gallery-container container">
               <div className="property__gallery">
 
-                {offerImages.map((currentImg) => (
+                {images.map((currentImg) => (
                   <div key={randomId()} className="property__image-wrapper">
-                    <img className="property__image" src={currentImg.src} alt={currentImg.alt} />
+                    <img className="property__image" src={currentImg} alt={title} />
                   </div>
                 ))}
 
@@ -81,17 +82,17 @@ function PropertyScreen (): JSX.Element {
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    {offerType}
+                    {type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {`${bedQuantity} Bedrooms`}
+                    {`${bedrooms} Bedrooms`}
                   </li>
                   <li className="property__feature property__feature--adults">
-                    {`Max ${maxPeopleQuantity} adults`}
+                    {`Max ${maxAdults} adults`}
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;{pricePerNight}</b>
+                  <b className="property__price-value">&euro;{price}</b>
                   <span className="property__price-text">&nbsp; night</span>
                 </div>
                 <div className="property__inside">
@@ -99,7 +100,7 @@ function PropertyScreen (): JSX.Element {
                   <ul className="property__inside-list">
 
                     {
-                      itemsInside.map((currentItem) => (
+                      goods.map((currentItem) => (
                         <li key={randomId()} className="property__inside-item">
                           {currentItem}
                         </li>
@@ -115,10 +116,10 @@ function PropertyScreen (): JSX.Element {
                       <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
                     </div>
                     <span className="property__user-name">
-                      {hostInfo.hostName}
+                      {host.name}
                     </span>
 
-                    {hostInfo.isPro &&
+                    {host.isPro &&
                       <span className="property__user-status">
                         Pro
                       </span>}
@@ -126,10 +127,10 @@ function PropertyScreen (): JSX.Element {
                   </div>
                   <div className="property__description">
                     <p className="property__text">
-                      {hostInfo.descriptionOne}
+                      {description}
                     </p>
                     <p className="property__text">
-                      {hostInfo.descriptionTwo}
+                      {description}
                     </p>
                   </div>
                 </div>

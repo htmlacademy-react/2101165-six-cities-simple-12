@@ -1,23 +1,16 @@
-import {City} from '../../types/offer';
 import PlaceList from '../../components/place-list/place-list';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
-import {useEffect} from 'react';
-import {loadOffers} from '../../store/action';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {mockOffers} from '../../mock/offers';
-import {mockCities} from '../../mock/city';
+import {useAppSelector} from '../../hooks';
+import {Locations} from '../../const';
+import {City} from '../../types/offer';
+
 
 function MainScreen (): JSX.Element {
 
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(loadOffers(mockOffers));
-  }, [dispatch]);
-
   const offers = useAppSelector((state) => state.offersByCity);
   const city = useAppSelector((state) => state.city);
-  const cityForMap = mockCities.find((mockCity) => mockCity.name === city) as City;
+  const cityForMap = Locations.find((location) => location.name === city) as City;
 
   return (
     <div className="page page--gray page--main">

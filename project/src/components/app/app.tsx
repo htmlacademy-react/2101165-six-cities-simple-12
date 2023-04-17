@@ -5,8 +5,19 @@ import EmptyScreen from '../../pages/empty-screen/empty-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import PropertyScreen from '../../pages/property-screen/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import { store } from '../../store';
+import {fetchHotelAction} from '../../store/api-actions';
+
+store.dispatch(fetchHotelAction());
 
 function App(): JSX.Element {
+
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  if (isOffersDataLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <BrowserRouter>
