@@ -1,7 +1,7 @@
 import {useParams} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import CommentForm from '../../components/comment-form/comment-form';
-import {randomId} from '../../utils';
+import {randomId, makeBigFirstLetter} from '../../utils';
 import {useAppSelector} from '../../hooks';
 
 function PropertyScreen (): JSX.Element {
@@ -50,7 +50,7 @@ function PropertyScreen (): JSX.Element {
             <div className="property__gallery-container container">
               <div className="property__gallery">
 
-                {images.map((currentImg) => (
+                {images.slice(0,6).map((currentImg) => (
                   <div key={randomId()} className="property__image-wrapper">
                     <img className="property__image" src={currentImg} alt={title} />
                   </div>
@@ -75,14 +75,14 @@ function PropertyScreen (): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${rating}%`}}></span>
+                    <span style={{width: `${Math.round(rating) * 20}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">{(Number(rating) / 20).toFixed(1)}</span>
+                  <span className="property__rating-value rating__value">{rating}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    {type}
+                    {makeBigFirstLetter(type)}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
                     {`${bedrooms} Bedrooms`}
