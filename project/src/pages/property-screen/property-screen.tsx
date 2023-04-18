@@ -1,8 +1,9 @@
 import {useParams} from 'react-router-dom';
 import {Offer} from '../../types/offer';
 import CommentForm from '../../components/comment-form/comment-form';
-import {randomId, makeBigFirstLetter} from '../../utils';
+import {randomId, makeBigFirstLetter, calculateRating} from '../../utils';
 import {useAppSelector} from '../../hooks';
+import { MAX_OFFER_IMAGES_QUANTITY } from '../../const';
 
 function PropertyScreen (): JSX.Element {
   const params = useParams();
@@ -50,7 +51,7 @@ function PropertyScreen (): JSX.Element {
             <div className="property__gallery-container container">
               <div className="property__gallery">
 
-                {images.slice(0,6).map((currentImg) => (
+                {images.slice(0,MAX_OFFER_IMAGES_QUANTITY).map((currentImg) => (
                   <div key={randomId()} className="property__image-wrapper">
                     <img className="property__image" src={currentImg} alt={title} />
                   </div>
@@ -75,7 +76,7 @@ function PropertyScreen (): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${Math.round(rating) * 20}%`}}></span>
+                    <span style={{width: `${calculateRating(rating)}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">{rating}</span>
@@ -85,10 +86,10 @@ function PropertyScreen (): JSX.Element {
                     {makeBigFirstLetter(type)}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {`${bedrooms} Bedrooms`}
+                    {bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    {`Max ${maxAdults} adults`}
+                    Max {maxAdults} adults
                   </li>
                 </ul>
                 <div className="property__price">

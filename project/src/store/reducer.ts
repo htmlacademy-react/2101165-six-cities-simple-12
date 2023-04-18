@@ -2,7 +2,7 @@ import {createReducer} from '@reduxjs/toolkit';
 import {Offer} from '../types/offer';
 import {loadOffers, changeCity, loadOffersByCity, setOffersDataLoadingStatus} from './action';
 import {CITIES} from '../const';
-import { fetchHotelAction } from './api-actions';
+import { fetchHotelsAction } from './api-actions';
 
 type initialStateType = {
   city: string;
@@ -30,16 +30,13 @@ const reducer = createReducer(initialState, (builder) => {
       state.offers = action.payload;
       state.offersByCity = state.offers.filter((offer)=> offer.city.name === state.city);
     })
-    .addCase(fetchHotelAction.fulfilled, (state, action) => {
+    .addCase(fetchHotelsAction.fulfilled, (state, action) => {
       state.offers = action.payload;
       state.offersByCity = state.offers.filter((offer)=> offer.city.name === state.city);
     })
     .addCase(loadOffersByCity, (state) => {
       state.offersByCity = state.offers.filter((offer) => offer.city.name === state.city);
     });
-  // .addCase(requireAuthorization, (state, action) => {
-  //   state.authorizationStatus = action.payload;
-  // });
 });
 
 export {reducer};

@@ -2,7 +2,7 @@ import PlaceList from '../../components/place-list/place-list';
 import Map from '../../components/map/map';
 import CitiesList from '../../components/cities-list/cities-list';
 import {useAppSelector} from '../../hooks';
-import {Locations} from '../../const';
+import {LOCATIONS} from '../../const';
 import {City} from '../../types/offer';
 
 
@@ -10,7 +10,7 @@ function MainScreen (): JSX.Element {
 
   const offers = useAppSelector((state) => state.offersByCity);
   const city = useAppSelector((state) => state.city);
-  const cityForMap = Locations.find((location) => location.name === city) as City;
+  const cityForMap = LOCATIONS.find((location) => location.name === city) as City;
 
   return (
     <div className="page page--gray page--main">

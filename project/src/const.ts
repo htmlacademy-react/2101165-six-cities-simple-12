@@ -39,7 +39,7 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
-export const Locations = [
+export const LOCATIONS = [
   {
     name: 'Paris',
     location: {
@@ -90,8 +90,4 @@ export const Locations = [
   }
 ];
 
-// export enum AuthorizationStatus {
-//   Auth = 'AUTH',
-//   NoAuth = 'NO_AUTH',
-//   Unknown = 'UNKNOWN',
-// }
+export const MAX_OFFER_IMAGES_QUANTITY = 6;

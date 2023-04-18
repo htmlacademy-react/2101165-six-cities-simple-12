@@ -8,9 +8,9 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import { store } from '../../store';
-import {fetchHotelAction} from '../../store/api-actions';
+import {fetchHotelsAction} from '../../store/api-actions';
 
-store.dispatch(fetchHotelAction());
+store.dispatch(fetchHotelsAction());
 
 function App(): JSX.Element {
 
