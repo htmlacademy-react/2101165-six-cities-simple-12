@@ -12,11 +12,10 @@ function CitieslList (): JSX.Element {
   const handleCityChange = (evt: MouseEvent) => {
     evt.preventDefault();
 
-    const target = evt.target as HTMLLIElement;
-    const element = target.closest('li');
+    const target = evt.target as HTMLElement;
 
-    if (element?.textContent) {
-      dispatch(changeCity(element?.textContent));
+    if (target.textContent) {
+      dispatch(changeCity(target.textContent));
       dispatch(loadOffersByCity());
     }
   };

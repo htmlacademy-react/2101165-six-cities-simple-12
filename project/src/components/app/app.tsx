@@ -7,14 +7,18 @@ import PropertyScreen from '../../pages/property-screen/property-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
-import { store } from '../../store';
+import {store} from '../../store';
 import {fetchHotelsAction} from '../../store/api-actions';
-
-store.dispatch(fetchHotelsAction());
+import {useEffect} from 'react';
 
 function App(): JSX.Element {
 
   const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  useEffect(() => {
+    store.dispatch(fetchHotelsAction());
+  }, []);
+
   if (isOffersDataLoading) {
     return <LoadingScreen />;
   }
