@@ -31,8 +31,8 @@ function Map({city, offers}: MapProps): JSX.Element {
       map.setZoom(city.location.zoom,);
       offers.forEach((offer) => {
         const marker = new Marker({
-          lat: offer.coordinates[0],
-          lng: offer.coordinates[1],
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
 
         marker

@@ -11,9 +11,11 @@ function CitieslList (): JSX.Element {
 
   const handleCityChange = (evt: MouseEvent) => {
     evt.preventDefault();
-    const target = evt.target as HTMLLIElement;
-    if (target.tagName === 'SPAN') {
-      dispatch(changeCity(target.innerHTML));
+
+    const target = evt.target as HTMLElement;
+
+    if (target.textContent) {
+      dispatch(changeCity(target.textContent));
       dispatch(loadOffersByCity());
     }
   };

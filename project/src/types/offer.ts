@@ -1,37 +1,29 @@
-import {Review} from '../types/review';
-
-export type OfferImage = {
-  src: string;
-  alt: string;
-}
-
 export type HostInfo = {
-  hostAvatar: string;
-  hostName: string;
+  avatarUrl: string;
+  name: string;
   isPro: boolean;
-  descriptionOne: string;
-  descriptionTwo: string;
+  id: string;
 }
 
 export type Offer = {
-  offerId: number;
-  offerImages: OfferImage[];
+  city: City;
+  previewImage: string;
+  images: string[];
   title: string;
-  description: string;
   isPremium: boolean;
-  offerType: string;
-  rating: string;
-  bedQuantity: string;
-  maxPeopleQuantity: string;
-  pricePerNight: string;
-  itemsInside: string[];
-  hostInfo: HostInfo;
-  reviews: Review[];
-  city: string;
-  coordinates: number[];
+  rating: number;
+  type: string;
+  bedrooms: number;
+  maxAdults: number;
+  price: number;
+  goods: string[];
+  host: HostInfo;
+  description: string;
+  location: Location;
+  id: number;
 };
 
-export type CityLocation = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
@@ -39,5 +31,5 @@ export type CityLocation = {
 
 export type City = {
   name: string;
-  location: CityLocation;
+  location: Location;
 };

@@ -10,7 +10,7 @@ function PlaceList ({offers}: PlaceListProps) {
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((currentOffer: Offer) => (
-        <PlaceCard key={currentOffer.offerId}
+        <PlaceCard key={currentOffer.id}
           offer={currentOffer}
         />
       ))}
