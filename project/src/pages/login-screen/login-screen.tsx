@@ -4,7 +4,7 @@ import {useAppDispatch} from '../../hooks';
 import {useNavigate} from 'react-router-dom';
 import {loginAction} from '../../store/api-actions';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { setAuthorizationStatus } from '../../store/action';
+import {setAuthorizationStatus } from '../../store/action';
 
 function LoginScreen (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -81,6 +81,7 @@ function LoginScreen (): JSX.Element {
                   onClick={() => {
                     navigate(AppRoute.Main);
                     dispatch(setAuthorizationStatus(AuthorizationStatus.Auth));
+                    // store.dispatch(loginAction());
                   }}
                   className="login__submit form__submit button"
                   type="submit"

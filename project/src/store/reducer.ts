@@ -1,8 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
 import {Offer} from '../types/offer';
-import {loadOffers, changeCity, loadOffersByCity, setOffersDataLoadingStatus, setAuthorizationStatus} from './action';
+import {changeCity, loadOffersByCity, setOffersDataLoadingStatus, setAuthorizationStatus} from './action';
 import {CITIES, AuthorizationStatus} from '../const';
-import {fetchHotelsAction} from './api-actions';
+import {fetchHotelsAction, loginAction} from './api-actions';
 import { UserData } from '../types/user-data';
 
 type initialStateType = {
@@ -38,16 +38,15 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
     })
-    .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload;
-      state.offersByCity = state.offers.filter((offer)=> offer.city.name === state.city);
-    })
     .addCase(fetchHotelsAction.fulfilled, (state, action) => {
       state.offers = action.payload;
       state.offersByCity = state.offers.filter((offer)=> offer.city.name === state.city);
     })
     .addCase(loadOffersByCity, (state) => {
       state.offersByCity = state.offers.filter((offer) => offer.city.name === state.city);
+    })
+    .addCase(loginAction.fulfilled, (state, action) => {
+      state.userInfo = action.payload;
     })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;

@@ -48,7 +48,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {
 }>(
   'user/login',
   async (authData, { extra: api }) => {
-    const { data } = await api.post<UserData>(
+    const {data} = await api.post<UserData>(
       APIRoute.Login,
       authData,
     );

@@ -2,12 +2,12 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus, AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
+import { setAuthorizationStatus } from '../../store/action';
 
 function Header(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
-  // const userData = useAppSelector((state) => state.userInfo);
-
+  const userData = useAppSelector((state) => state.userInfo);
 
   return (
     <nav className="header__nav">
@@ -26,17 +26,18 @@ function Header(): JSX.Element {
                       alt="User avatar"
                     /> */}
                 </div>
-                <span className="header__user-name user__name">11{/*userData.email*/}</span>
+                <span className="header__user-name user__name">{userData.email}</span>
               </div>
             </li>
             <li className="header__nav-item">
               <Link
                 className="header__nav-link"
-                to="/"
                 onClick={(evt) => {
                   evt.preventDefault();
                   dispatch(logoutAction());
+                  dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
                 }}
+                to="/"
               >
                 <span className="header__signout">Sign out</span>
               </Link>
