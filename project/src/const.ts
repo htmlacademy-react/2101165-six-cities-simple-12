@@ -91,3 +91,9 @@ export const LOCATIONS = [
 ];
 
 export const MAX_OFFER_IMAGES_QUANTITY = 6;
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}

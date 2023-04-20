@@ -8,7 +8,7 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import {store} from '../../store';
-import {fetchHotelsAction} from '../../store/api-actions';
+import {fetchHotelsAction, checkAuthAction} from '../../store/api-actions';
 import {useEffect} from 'react';
 
 function App(): JSX.Element {
@@ -17,6 +17,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     store.dispatch(fetchHotelsAction());
+    store.dispatch(checkAuthAction());
   }, []);
 
   if (isOffersDataLoading) {

@@ -4,6 +4,7 @@ import CommentForm from '../../components/comment-form/comment-form';
 import {randomId, makeBigFirstLetter, calculateRating} from '../../utils';
 import {useAppSelector} from '../../hooks';
 import { MAX_OFFER_IMAGES_QUANTITY } from '../../const';
+import Header from '../../components/header/header';
 
 function PropertyScreen (): JSX.Element {
   const params = useParams();
@@ -27,21 +28,9 @@ function PropertyScreen (): JSX.Element {
                   <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
                 </a>
               </div>
-              <nav className="header__nav">
-                <ul className="header__nav-list">
-                  <li className="header__nav-item user">
-                    <div className="header__nav-profile">
-                      <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    </div>
-                  </li>
-                  <li className="header__nav-item">
-                    <a className="header__nav-link" href="/">
-                      <span className="header__signout">Sign out</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+
+              <Header />
+
             </div>
           </div>
         </header>
@@ -76,7 +65,7 @@ function PropertyScreen (): JSX.Element {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${calculateRating(rating)}%`}}></span>
+                    <span style={{width: calculateRating(rating)}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">{rating}</span>
