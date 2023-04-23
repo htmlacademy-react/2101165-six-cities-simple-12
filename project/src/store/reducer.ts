@@ -11,7 +11,7 @@ type initialStateType = {
   offersByCity: Offer[];
   isOffersDataLoading: boolean;
   authorizationStatus: string;
-  userInfo: UserData;
+  userInfo: UserData | null;
 }
 
 const initialState: initialStateType = {
@@ -20,14 +20,7 @@ const initialState: initialStateType = {
   offersByCity: [],
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  userInfo: {
-    avatarUrl: '',
-    email: '',
-    id: 0,
-    isPro: false,
-    name: '',
-    token: ''
-  }
+  userInfo: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {

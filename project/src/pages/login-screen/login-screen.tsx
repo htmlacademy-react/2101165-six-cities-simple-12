@@ -1,5 +1,4 @@
 import {FormEvent, useRef} from 'react';
-import {AuthData} from '../../types/auth-data';
 import {useAppDispatch} from '../../hooks';
 import {useNavigate} from 'react-router-dom';
 import {loginAction} from '../../store/api-actions';
@@ -14,18 +13,15 @@ function LoginScreen (): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onSubmit = (authData: AuthData) => {
-    dispatch(loginAction(authData));
-  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
-      onSubmit({
+      dispatch(loginAction({
         login: loginRef.current.value,
         password: passwordRef.current.value,
-      });
+      }));
     }
   };
 
