@@ -9,6 +9,7 @@ function Header(): JSX.Element {
   const authStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
   const userData = useAppSelector((state) => state.userInfo);
+
   const handleClickSignOut = (evt: MouseEvent) => {
     evt.preventDefault();
     dispatch(logoutAction());

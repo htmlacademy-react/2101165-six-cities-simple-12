@@ -1,9 +1,9 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
-import {APIRoute, AuthorizationStatus} from '../const';
+import {APIRoute} from '../const';
 import {Offer} from '../types/offer';
-import {setOffersDataLoadingStatus, authRequired, updateUser} from './action';
+import {setOffersDataLoadingStatus} from './action';
 import {dropToken, saveToken} from '../services/token';
 import {UserData} from '../types/user-data';
 import {AuthData} from '../types/auth-data';
@@ -22,36 +22,34 @@ export const fetchHotelsAction = createAsyncThunk<Offer[], undefined, {
   },
 );
 
-export const CheckAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }
 >(
   'user/checkAuth',
-  async(_arg, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<UserData>(APIRoute.Login);
-      dispatch(authRequired(AuthorizationStatus.Auth));
-      dispatch(updateUser(data));
-    } catch {
-      dispatch(authRequired(AuthorizationStatus.NoAuth));
-    }
-  },
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<UserData>(APIRoute.Login);
+    return data;
+  }
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData | null, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }
 >(
   'user/login',
-  async({login: email, password}, {dispatch, extra: api}) => {
+  async({login: email, password}, {extra: api}) => {
     const {data} = await api.post<UserData>(APIRoute.Login, {email,password});
-    saveToken(data.token);
-    dispatch(updateUser(data));
-    dispatch(authRequired(AuthorizationStatus.Auth));
+    if (data) {
+      saveToken(data.token);
+      return data;
+    } else {
+      return null;
+    }
   },
 );
 
@@ -62,10 +60,8 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }
 >(
   'user/logout',
-  async(_arg, {dispatch, extra: api}) => {
+  async(_arg, {extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
-    dispatch(updateUser(null));
-    dispatch(authRequired(AuthorizationStatus.NoAuth));
   }
 );
