@@ -2,18 +2,20 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus, AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
-import { setAuthorizationStatus } from '../../store/action';
 import { MouseEvent } from 'react';
+import { getAuthorizationStatus, getUserData } from '../../store/user-process/selectors';
 
 function Header(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
   const dispatch = useAppDispatch();
-  const userData = useAppSelector((state) => state.userInfo);
+
+  const userData = useAppSelector(getUserData);
 
   const handleClickSignOut = (evt: MouseEvent) => {
     evt.preventDefault();
     dispatch(logoutAction());
-    dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
   };
 
   return (
@@ -28,7 +30,7 @@ function Header(): JSX.Element {
           <nav className="header__nav">
             <ul className="header__nav-list">
               {
-                authStatus === AuthorizationStatus.Auth &&
+                authorizationStatus === AuthorizationStatus.Auth &&
                   <>
                     <li className="header__nav-item user">
                       <div className="header__nav-profile">
@@ -57,7 +59,7 @@ function Header(): JSX.Element {
               }
 
               {
-                authStatus === AuthorizationStatus.NoAuth &&
+                authorizationStatus === AuthorizationStatus.NoAuth &&
                   <li className="header__nav-item user">
                     <Link className="header__nav-link header__nav-link--profile"
                       to={AppRoute.Login}
