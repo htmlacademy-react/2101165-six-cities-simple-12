@@ -2,7 +2,6 @@ import {useAppDispatch, useAppSelector} from '../../hooks';
 import {AuthorizationStatus, AppRoute} from '../../const';
 import {Link} from 'react-router-dom';
 import {logoutAction} from '../../store/api-actions';
-import { setAuthorizationStatus } from '../../store/action';
 import { MouseEvent } from 'react';
 
 function Header(): JSX.Element {
@@ -13,7 +12,6 @@ function Header(): JSX.Element {
   const handleClickSignOut = (evt: MouseEvent) => {
     evt.preventDefault();
     dispatch(logoutAction());
-    dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
   };
 
   return (
