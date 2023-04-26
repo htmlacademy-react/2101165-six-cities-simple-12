@@ -1,5 +1,5 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import {AppRoute, AuthorizationStatus} from '../../const';
 import MainScreen from '../../pages/main-screen/main-screen';
 import EmptyScreen from '../../pages/empty-screen/empty-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
@@ -10,17 +10,21 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import {store} from '../../store';
 import {fetchHotelsAction, checkAuthAction} from '../../store/api-actions';
 import {useEffect} from 'react';
+import { getDataLoadingStatus } from '../../store/app-data/selectors';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 function App(): JSX.Element {
 
-  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const isOffersDataLoading = useAppSelector(getDataLoadingStatus);
 
   useEffect(() => {
     store.dispatch(fetchHotelsAction());
     store.dispatch(checkAuthAction());
   }, []);
 
-  if (isOffersDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
     return <LoadingScreen />;
   }
 
