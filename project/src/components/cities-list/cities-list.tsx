@@ -1,41 +1,17 @@
-import {CITIES} from '../../const';
-import {useAppDispatch, useAppSelector} from '../../hooks';
-import {NavLink} from 'react-router-dom';
-import {changeCity, loadOffersByCity} from '../../store/action';
-import {MouseEvent} from 'react';
+import {LOCATIONS} from '../../const';
+import { memo } from 'react';
+
+import CitiesItem from '../cities-item/cities-item';
 
 function CitieslList (): JSX.Element {
 
-  const selectedCity = useAppSelector((state) => state.city);
-  const dispatch = useAppDispatch();
-
-  const handleCityChange = (evt: MouseEvent) => {
-    evt.preventDefault();
-
-    const target = evt.target as HTMLElement;
-
-    if (target.textContent) {
-      dispatch(changeCity(target.textContent));
-      dispatch(loadOffersByCity());
-    }
-  };
-
   return (
     <ul className="locations__list tabs__list">
-      {CITIES.map((city) => (
-        <li key={city}
-          className="locations__item"
-        >
-          <NavLink className={`locations__item-link tabs__item ${city === selectedCity ? 'tabs__item--active' : ''}`}
-            to={'/'}
-            onClick={handleCityChange}
-          >
-            <span>{city}</span>
-          </NavLink>
-        </li>
+      {LOCATIONS.map((city) => (
+        <CitiesItem key={city.name} city={city} />
       ))}
     </ul>
   );
 }
 
-export default CitieslList;
+export default memo(CitieslList);

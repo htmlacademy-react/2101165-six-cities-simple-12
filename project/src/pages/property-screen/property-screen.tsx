@@ -5,11 +5,12 @@ import {randomId, makeBigFirstLetter, calculateRating} from '../../utils';
 import {useAppSelector} from '../../hooks';
 import { MAX_OFFER_IMAGES_QUANTITY } from '../../const';
 import Header from '../../components/header/header';
+import { getOffers } from '../../store/app-data/selectors';
 
 function PropertyScreen (): JSX.Element {
   const params = useParams();
   const selectedOfferId = Number(params.id);
-  const offersAll = useAppSelector((state) => state.offers);
+  const offersAll = useAppSelector(getOffers);
   const offer = offersAll.find((currentOffer) => currentOffer.id === selectedOfferId) as Offer;
   const {rating, images, isPremium, title, type, bedrooms, maxAdults, price, goods, host, description} = offer;
 
